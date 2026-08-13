@@ -67,14 +67,15 @@ module "ec2_role" {
 
 # 3. EC2 Module Consumption
 module "web_server" {
-  source = "git::https://github.com/Syed-Abdullah/terraform-aws-ec2.git?ref=v1.0.0"
+  source = "git::https://github.com/Syed-Abdullah/terraform-aws-ec2.git?ref=v1.0.1"
 
-  name                   = "${var.environment}-web-server"
-  instance_type          = var.instance_type
-  subnet_id              = module.vpc.public_subnet_ids[0]
-  vpc_security_group_ids = [aws_security_group.web.id]
-  role_arn               = module.ec2_role.role_arn
-  root_volume_size       = 20
+  name                        = "${var.environment}-web-server"
+  instance_type               = var.instance_type
+  subnet_id                   = module.vpc.public_subnet_ids[0]
+  vpc_security_group_ids      = [aws_security_group.web.id]
+  role_arn                    = module.ec2_role.role_arn
+  create_iam_instance_profile = true
+  root_volume_size            = 20
 
   tags = {
     Environment = var.environment
