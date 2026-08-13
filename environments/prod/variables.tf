@@ -36,6 +36,6 @@ variable "azs" {
 
 variable "instance_type" {
   type        = string
-  default     = "t3.medium"
+  default     = "t3.small"
   description = "EC2 instance type for prod web server"
 }
