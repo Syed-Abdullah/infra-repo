@@ -29,7 +29,7 @@ resource "random_string" "suffix" {
 # S3 Bucket for storing Terraform state files securely
 resource "aws_s3_bucket" "state" {
   bucket        = "infra-tfstate-backend-${random_string.suffix.result}"
-  force_destroy = false
+  force_destroy = true
 
   tags = {
     Name        = "Terraform Remote State Bucket"
